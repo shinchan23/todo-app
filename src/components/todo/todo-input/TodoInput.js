@@ -8,13 +8,11 @@ import TextField from "@material-ui/core/TextField";
 import { FormControl } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
-import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-    marginTop: theme.spacing(10),
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -23,7 +21,10 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-    margin: theme.spacing(1),
+    marginTop: theme.spacing(1),
+  },
+  disButton: {
+    marginTop: theme.spacing(1),
   },
 }));
 
@@ -49,45 +50,41 @@ const TodoInput = () => {
     <form>
       <FormControl>
         <div className={classes.root}>
-          <Container>
-            <TextField
-              id="standard-full-width"
-              label="Quick Add Task"
-              style={{ margin: 10 }}
-              placeholder="Please Enter Todo"
-              helperText="ex: need to complete project"
-              fullWidth
-              InputLabelProps={{
-                shrink: true,
-              }}
-              value={todoString}
-              onChange={(event) => setTodoString(event.target.value)}
-            />
-            {todoString === "" ? (
-              <Button
-                variant="contained"
-                color="primary"
-                size="small"
-                style={{ margin: 10 }}
-                startIcon={<SaveIcon />}
-                disabled
-              >
-                Save
-              </Button>
-            ) : (
-              <Button
-                variant="contained"
-                color="primary"
-                size="small"
-                style={{ margin: 10 }}
-                className={classes.button}
-                startIcon={<SaveIcon />}
-                onClick={handleSubmit}
-              >
-                Save
-              </Button>
-            )}
-          </Container>
+          <TextField
+            id="standard-full-width"
+            label="Quick Add Task"
+            placeholder="Please Enter Todo"
+            helperText="ex: need to complete project"
+            fullWidth
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={todoString}
+            onChange={(event) => setTodoString(event.target.value)}
+          />
+          {todoString === "" ? (
+            <Button
+              variant="contained"
+              color="primary"
+              size="small"
+              startIcon={<SaveIcon />}
+              className={classes.disButton}
+              disabled
+            >
+              Save
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              color="primary"
+              size="small"
+              className={classes.button}
+              startIcon={<SaveIcon />}
+              onClick={handleSubmit}
+            >
+              Save
+            </Button>
+          )}
         </div>
       </FormControl>
     </form>
